@@ -1,0 +1,69 @@
+Carrom game implemented in OpenGL.
+IMPORTANT NOTE: The game runs both on Mac OSX and Linux operating systems.
+
+Header Files for the game:
+	BasicCircle.h -> Implements class for a basic circle that is later inherited.
+									________
+	Coin.h -> Implements class for the coins on the board.			|
+	Pocket.h -> Implements class for the pockets on the board.		|-> BasicCircle class is inherited.
+	Striker.h -> Implements class for the striker on the board.	________|
+
+The main source code is under the main.cpp file.
+Functions in the main.cpp file:
+	int main(int argc, char *argv[]) -> Main function that is called initially when the program loads.
+	GLuint LoadBMP(const char *fileName) -> Loads the image file to be used as a texture.
+	void init_game_window(void) -> Sets the initial game properties.
+	void init_coins(void) -> Sets the properties of the coins on the board. This includes the initial color and the coordinates.
+	void render_game(void) -> Runs throughout the game and calls the other functions needed to draw the game.
+	void handle_mouse_press(int button, int state, int x, int y) -> Handles the mouse clicks.
+	void handle_key_press(unsigned char key, int x, int y) -> Handles the key presses.
+	void handle_special_key_press(int key, int x, int y) -> Handles the special key presses.
+	void next_turn(void) -> Sets the properties for the next turn of the game.
+	void draw_board_text(void) -> Draws the text above the board.
+	void draw_board_striker(void) -> Draws the striker on the board based on its movement. Also checks for collisions.
+	void check_pockets(void) -> Checks the pockets for striker or the coins.
+	void draw_board_pockets(void) -> Draws the pockets on the board.
+	void draw_board_coins(void) -> Draws the coins on the game board.
+	void draw_board_boundary(void) -> Draws the board boundaries.
+
+Description of the game:
+	This is an implementation of the game of carrom using OpenGL.
+	The game board includes a striker, 3 white coins, 3 black coins and a red coin.
+	The game has 2 players. Player 1 is supposed to score white coins whereas Player 2 is supposed to score black coins.
+	On scoring the correct coins, the player gets 10 points but, on pocketing the wrong coins, 5 points are deducted from the player.
+	On scoring the red coin, the player gets 50 points.
+	Initially, the game starts with 30 points for both the players.
+	Each second the player spends, 1 point is deducted from the player score.
+	The goal of the game is to score all the coins and the player with the highest points wins the game.
+
+Controls of the game:
+	The game has both keyboard and mouse controls.
+	Key A -> Turn the striker direction anti-clockwise.
+	Key C -> Turn the striker direction clockwise.
+	Left Key -> Move the striker towards the left.
+	Right Key -> Move the striker towards the right.
+	Up Key -> Increase striker velocity.
+	Down Key -> Decrease striker velocity.
+	Spacebar -> Shoot the striker.
+	Mouse right button -> Right click on the striker and drag it towards left or right to move the striker at that position.
+	Left right button -> Left click on the board to shoot the striker at the specific direction with the given velocity.
+
+Run the game:
+	To run the game, first we need to build the source code.
+	To do this, simply type 'make'.
+	Once this is done, type 'make run' or ./carrom to start the game.
+	To remove the build files, type 'make clean'.
+	The game runs both on Mac OSX and Linux operating systems.
+
+Audio for the game:
+	For Mac OSX:
+		AudioPlayer.cpp and AudioPlayer.h have been included to play music during the game.
+		The files have been taken from https://github.com/scoopr/auplay
+	For Linux:
+		irrKlang directory has been added to play music during the game.
+		The files have been taken from http://www.ambiera.at/downloads/irrKlang-64bit-1.5.0.zip
+	The music file being played during the game is -> music.wav
+	The music file can be replaced with any other file of the supported file format to change the music during the game.
+
+Texture for the game:
+	The texture used in the game has been used with the help of texture.bmp
